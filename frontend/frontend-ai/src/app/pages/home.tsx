@@ -13,9 +13,9 @@ export default function Home() {
             <CardDescription>Experience our AI with a Siri-inspired interface</CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href="/assistant-siri">
+            <a href="/assistant-siri">
               <Button className="w-full">Launch Siri-like Assistant</Button>
-            </Link>
+            </a>
           </CardContent>
         </Card>
         <Card>
@@ -24,9 +24,9 @@ export default function Home() {
             <CardDescription>Interact with our AI using a familiar ChatGPT-style interface</CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href="/assistant-chatgpt">
+            <a href="/aichat">
               <Button className="w-full">Launch ChatGPT-like Assistant</Button>
-            </Link>
+            </a>
           </CardContent>
         </Card>
         <Card>
@@ -35,9 +35,9 @@ export default function Home() {
             <CardDescription>Learn more about our AI assistants</CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href="/about">
+            <a href="/about">
               <Button variant="outline" className="w-full">About Page</Button>
-            </Link>
+            </a>
           </CardContent>
         </Card>
         <Card>
@@ -46,9 +46,9 @@ export default function Home() {
             <CardDescription>Get in touch with our team</CardDescription>
           </CardHeader>
           <CardContent>
-            <Link href="/contact">
+            <a href="/contact">
               <Button variant="outline" className="w-full">Contact Page</Button>
-            </Link>
+            </a>
           </CardContent>
         </Card>
       </div>
