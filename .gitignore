@@ -1,0 +1,12 @@
+# Logs
+*.log
+
+# Ignore IDE/editor config files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Mac and system files
+.DS_Store
+Thumbs.db
