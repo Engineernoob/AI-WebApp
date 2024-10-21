@@ -1,58 +1,46 @@
-"use client"
-import Link from 'next/link'
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+"use client";
+import React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Home, MessageCircle, Settings, Info, LogIn } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
-export default function Home() {
+export default function HomePage() {
+  const { theme, setTheme } = useTheme();
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 p-4">
-      <h1 className="text-4xl font-bold mb-8">AI Assistant Hub</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-        <Card>
-          <CardHeader>
-            <CardTitle>Siri-like Assistant</CardTitle>
-            <CardDescription>Experience our AI with a Siri-inspired interface</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/assistant-siri">
-              <Button className="w-full">Launch Siri-like Assistant</Button>
-            </Link>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>ChatGPT-like Assistant</CardTitle>
-            <CardDescription>Interact with our AI using a familiar ChatGPT-style interface</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/aichat">
-              <Button className="w-full">Launch ChatGPT-like Assistant</Button>
-            </Link>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>About</CardTitle>
-            <CardDescription>Learn more about our AI assistants</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/about">
-              <Button variant="outline" className="w-full">About Page</Button>
-            </Link>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Contact</CardTitle>
-            <CardDescription>Get in touch with our team</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/contact">
-              <Button variant="outline" className="w-full">Contact Page</Button>
-            </Link>
-          </CardContent>
-        </Card>
+    <div className={`flex flex-col items-center justify-center min-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-100 text-black'}`}>
+      <h1 className="text-5xl font-bold mb-8">Welcome to Silas AI</h1>
+      <p className="text-lg mb-8 max-w-xl text-center">
+        Silas AI is your personal AI assistant, designed to help make your daily tasks easier and provide you with information quickly. Whether you need to chat, ask questions, or learn more about our features, Silas AI is here for you.
+      </p>
+      <div className="flex space-x-4">
+        <Link href="/login" passHref>
+          <Button variant="outline">
+            <LogIn className="mr-2" /> Login
+          </Button>
+        </Link>
+        <Link href="/signup" passHref>
+          <Button variant="outline">
+            <Home className="mr-2" /> Sign Up
+          </Button>
+        </Link>
+        <Link href="/aichat" passHref>
+          <Button variant="outline">
+            <MessageCircle className="mr-2" /> Chat Now
+          </Button>
+        </Link>
+        <Link href="/about" passHref>
+          <Button variant="outline">
+            <Info className="mr-2" /> About
+          </Button>
+        </Link>
+      </div>
+      <div className="mt-8">
+        <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="mb-4">
+          {theme === 'dark' ? <Home className="h-6 w-6" /> : <Settings className="h-6 w-6" />}
+        </Button>
       </div>
     </div>
-  )
+  );
 }
