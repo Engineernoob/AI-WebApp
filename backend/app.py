@@ -2,8 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
-from transformers import  AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import traceback
+import torch
 
 # Load environment variables from .env file
 load_dotenv()
@@ -41,21 +42,22 @@ def ask_question():
         # Tokenize and encode the conversation history
         inputs = tokenizer.encode(context + "\nAI:", return_tensors="pt", truncation=True, max_length=1024)
 
-        # Create attention mask
-        attention_mask = inputs.ne(tokenizer.pad_token_id).long()
+        # Check if CUDA is available and move the model and inputs to GPU if possible
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        model.to(device)
+        inputs = inputs.to(device)
 
         # Generate a response using the model
         outputs = model.generate(
-    inputs,
-    attention_mask=attention_mask,  # Optionally include attention_mask if input contains padding
-    max_length=inputs.shape[1] + 50,  # Generate 50 tokens beyond the input length
-    num_return_sequences=1,
-    no_repeat_ngram_size=2,
-    do_sample=True,
-    top_k=50,
-    top_p=0.95,
-    temperature=0.7,
-    pad_token_id=tokenizer.eos_token_id
+            inputs,
+            max_length=inputs.shape[1] + 50,  # Generate 50 tokens beyond the input length
+            num_return_sequences=1,
+            no_repeat_ngram_size=2,
+            do_sample=True,
+            top_k=50,
+            top_p=0.95,
+            temperature=0.7,
+            pad_token_id=tokenizer.eos_token_id
         )
 
         # Decode the generated response back into text
