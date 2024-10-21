@@ -10,3 +10,6 @@
 # Mac and system files
 .DS_Store
 Thumbs.db
+
+# Envoriments
+.venv
