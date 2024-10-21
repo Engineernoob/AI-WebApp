@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Home, MessageCircle, Settings, Info, LogIn } from 'lucide-react';
+import { UserPlus, MessageCircle, Settings, Info, LogIn } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react'; // Added import for Sun and Moon icons
 
@@ -23,7 +23,7 @@ export default function HomePage() {
         </Link>
         <Link href="/signup" passHref>
           <Button variant="outline">
-            <Home className="mr-2" /> Sign Up
+          <UserPlus className="mr-2" /> Sign Up
           </Button>
         </Link>
         <Link href="/aichat" passHref>
