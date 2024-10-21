@@ -1,3 +1,4 @@
+"use client"
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
@@ -14,9 +15,7 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <Link href="/assistant-siri">
-              <a>
-                <Button className="w-full">Launch Siri-like Assistant</Button>
-              </a>
+              <Button className="w-full">Launch Siri-like Assistant</Button>
             </Link>
           </CardContent>
         </Card>
@@ -27,9 +26,7 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <Link href="/aichat">
-              <a>
-                <Button className="w-full">Launch ChatGPT-like Assistant</Button>
-              </a>
+              <Button className="w-full">Launch ChatGPT-like Assistant</Button>
             </Link>
           </CardContent>
         </Card>
@@ -40,9 +37,7 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <Link href="/about">
-              <a>
-                <Button variant="outline" className="w-full">About Page</Button>
-              </a>
+              <Button variant="outline" className="w-full">About Page</Button>
             </Link>
           </CardContent>
         </Card>
@@ -53,9 +48,7 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             <Link href="/contact">
-              <a>
-                <Button variant="outline" className="w-full">Contact Page</Button>
-              </a>
+              <Button variant="outline" className="w-full">Contact Page</Button>
             </Link>
           </CardContent>
         </Card>
