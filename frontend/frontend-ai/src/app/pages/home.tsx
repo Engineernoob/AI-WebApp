@@ -13,9 +13,11 @@ export default function Home() {
             <CardDescription>Experience our AI with a Siri-inspired interface</CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/assistant-siri">
-              <Button className="w-full">Launch Siri-like Assistant</Button>
-            </a>
+            <Link href="/assistant-siri">
+              <a>
+                <Button className="w-full">Launch Siri-like Assistant</Button>
+              </a>
+            </Link>
           </CardContent>
         </Card>
         <Card>
@@ -24,9 +26,11 @@ export default function Home() {
             <CardDescription>Interact with our AI using a familiar ChatGPT-style interface</CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/aichat">
-              <Button className="w-full">Launch ChatGPT-like Assistant</Button>
-            </a>
+            <Link href="/aichat">
+              <a>
+                <Button className="w-full">Launch ChatGPT-like Assistant</Button>
+              </a>
+            </Link>
           </CardContent>
         </Card>
         <Card>
@@ -35,9 +39,11 @@ export default function Home() {
             <CardDescription>Learn more about our AI assistants</CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/about">
-              <Button variant="outline" className="w-full">About Page</Button>
-            </a>
+            <Link href="/about">
+              <a>
+                <Button variant="outline" className="w-full">About Page</Button>
+              </a>
+            </Link>
           </CardContent>
         </Card>
         <Card>
@@ -46,9 +52,11 @@ export default function Home() {
             <CardDescription>Get in touch with our team</CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/contact">
-              <Button variant="outline" className="w-full">Contact Page</Button>
-            </a>
+            <Link href="/contact">
+              <a>
+                <Button variant="outline" className="w-full">Contact Page</Button>
+              </a>
+            </Link>
           </CardContent>
         </Card>
       </div>
