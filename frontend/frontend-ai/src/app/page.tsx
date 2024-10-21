@@ -1,15 +1,13 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import Home from './pages/home';
 import Login from "./pages/login";
 import Chat from "./pages/aichat";
 import SignUp from "./pages/signup";
 import About from "./pages/about";
 
-
-
 function App() {
-  const router = useRouter();
+  const pathname = usePathname();
   const routes = [
     { path: '/', component: Home },
     { path: '/login', component: Login },
@@ -22,7 +20,7 @@ function App() {
     <div>
       {routes.map((route) => (
         <div key={route.path}>
-          {router.asPath === route.path && <route.component />}
+          {pathname === route.path && <route.component />}
         </div>
       ))}
     </div>
