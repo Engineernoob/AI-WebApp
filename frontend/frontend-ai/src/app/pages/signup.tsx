@@ -17,6 +17,10 @@ const Signup: React.FC = () => {
     // Call your register API here
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
+    setState(e.target.value);
+  };
+
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-80">
@@ -29,7 +33,7 @@ const Signup: React.FC = () => {
               type="text"
               placeholder="Username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => handleInputChange(e, setUsername)}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
@@ -39,7 +43,7 @@ const Signup: React.FC = () => {
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleInputChange(e, setPassword)}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />
@@ -49,7 +53,7 @@ const Signup: React.FC = () => {
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              onChange={(e) => handleInputChange(e, setConfirmPassword)}
               className="w-full p-2 border border-gray-300 rounded-md"
               required
             />

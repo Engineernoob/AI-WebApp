@@ -14,13 +14,9 @@ const LoginRegister: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (isLogin) {
-      console.log('Logging in:', { username, password });
-      // Call your login API here
-    } else {
-      console.log('Registering:', { username, password });
-      // Call your register API here
-    }
+    const action = isLogin ? 'Logging in' : 'Registering';
+    console.log(`${action}:`, { username, password });
+    // Call your login or register API here
   };
 
   return (

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, MessageCircle, Settings, Info, LogIn } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { Sun, Moon } from 'lucide-react'; // Added import for Sun and Moon icons
 
 export default function HomePage() {
   const { theme, setTheme } = useTheme();
@@ -38,7 +39,7 @@ export default function HomePage() {
       </div>
       <div className="mt-8">
         <Button variant="ghost" size="icon" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="mb-4">
-          {theme === 'dark' ? <Home className="h-6 w-6" /> : <Settings className="h-6 w-6" />}
+          {theme === 'dark' ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
         </Button>
       </div>
     </div>
