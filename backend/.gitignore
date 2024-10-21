@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Virtual environment
+.venv/
+.env/
+
+# Logs and other temporary files
+*.log
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+
+# Jupyter Notebook checkpoints (if used)
+.ipynb_checkpoints/
+
+# Ignore any IDE/editor related files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.cusor/
