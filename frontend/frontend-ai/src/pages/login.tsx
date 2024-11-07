@@ -1,68 +1,95 @@
-"use client";
+"use client"
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { ArrowBigLeftDash } from 'lucide-react';
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { ArrowBigLeftDash, Bot } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useToast } from "@/components/ui/use-toast"
 
-const Login: React.FC = () => {
-  const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+export default function Login() {
+  const router = useRouter()
+  const { toast } = useToast()
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Add login logic here
     if (username && password) {
       // Assuming login is successful, redirect to AI chat page
-      router.push('/aichat');
+      router.push('/aichat')
     } else {
-      alert('Invalid credentials. Please try again.');
+      toast({
+        title: "Login Failed",
+        description: "Invalid credentials. Please try again.",
+        variant: "destructive",
+      })
     }
-  };
+  }
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+    <div className="flex justify-center items-center min-h-screen bg-background p-4">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <div className="flex justify-center mb-4">
+            <div className="bg-primary/10 p-2 rounded-full">
+              <Bot className="w-8 h-8 text-primary" />
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold text-center">Login to Silas AI</CardTitle>
+          <CardDescription className="text-center">
+            Enter your credentials to access your account
+          </CardDescription>
+        </CardHeader>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <div className="mb-6">
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
-          >
-            Login
-          </button>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col space-y-4">
+            <Button type="submit" className="w-full">
+              Login
+            </Button>
+            <div className="text-center text-sm">
+              <Link href="/signup" className="text-primary hover:underline">
+                Don't have an account? Register
+              </Link>
+            </div>
+            <div className="flex justify-center">
+              <Button variant="ghost" size="icon" asChild>
+                <Link href="/">
+                  <ArrowBigLeftDash className="h-6 w-6" />
+                  <span className="sr-only">Back to Home</span>
+                </Link>
+              </Button>
+            </div>
+          </CardFooter>
         </form>
-        <div className="mt-6 text-center">
-          <Link href="/signup" className="text-blue-600 hover:underline">
-            Don't have an account? Register
-          </Link>
-          <Link href="/">
-            <ArrowBigLeftDash className="mr-2 h-4 w-4" />
-          </Link>
-        </div>
-      </div>
+      </Card>
     </div>
-  );
-};
-
-export default Login;
-
+  )
+}
