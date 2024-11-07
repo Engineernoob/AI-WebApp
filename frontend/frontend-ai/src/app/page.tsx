@@ -1,31 +1,31 @@
 "use client"
 import React from 'react';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 import Home from './pages/home';
 import Login from "./pages/login";
 import Chat from "./pages/aichat";
 import SignUp from "./pages/signup";
 import About from "./pages/about";
 
-function App() {
-  const pathname = usePathname();
-  const routes = [
-    { path: '/', component: Home },
-    { path: '/login', component: Login },
-    { path: '/signup', component: SignUp },
-    { path: '/aichat', component: Chat },
-    { path: '/about', component: About },
-  ];
-
+function Page() {
   return (
     <div>
-      {routes.map((route) => (
-        <div key={route.path}>
-          {pathname === route.path && <route.component />}
-        </div>
-      ))}
+      <nav>
+        <Link href="/">Home</Link>
+        <Link href="/login">Login</Link>
+        <Link href="/aichat">Chat</Link>
+        <Link href="/signup">Sign Up</Link>
+        <Link href="/about">About</Link>
+      </nav>
+      <main>
+        <Home />
+        <Login />
+        <Chat />
+        <SignUp />
+        <About />
+      </main>
     </div>
   );
 }
 
-export default App;
+export default Page;
