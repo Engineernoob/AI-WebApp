@@ -58,8 +58,8 @@ const LoginRegister: React.FC = () => {
           {isLogin ? "Don't have an account? Register" : 'Already have an account? Login'}
         </button>
         <div className="mt-6 text-center">
-          <Link href="/">
-            <a className="text-sm text-blue-600 hover:underline">Back to Home</a>
+          <Link href="/" className='text-blue-600 hover:underline'>
+            Back to Home
           </Link>
         </div>
       </div>

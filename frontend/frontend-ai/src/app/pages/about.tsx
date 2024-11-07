@@ -17,8 +17,8 @@ const About: React.FC = () => {
           Our vision is to make AI technology accessible to everyone and provide personalized support that meets your individual needs. Silas is continuously learning and evolving to improve the quality of interactions and provide you with a better user experience.
         </p>
         <div className="text-center">
-          <Link href="/">
-            <a className="text-blue-600 hover:underline">Back to Home</a>
+          <Link href="/" className="text-blue-600 hover:underline">
+          Back to Home
           </Link>
         </div>
       </div>

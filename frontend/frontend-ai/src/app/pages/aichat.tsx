@@ -79,17 +79,17 @@ export default function AIAssistant() {
           } shadow-md`}
         >
           <div className="flex flex-col items-center py-4">
-            <Link href="/home" passHref>
+            <Link href="/home">
               <Button variant="ghost" size="icon" className="mb-4">
                 <Home className="h-6 w-6" />
               </Button>
             </Link>
-            <Link href="/assistant-siri" passHref>
+            <Link href="/assistant-siri">
               <Button variant="ghost" size="icon" className="mb-4">
                 <MessageCircle className="h-6 w-6" />
               </Button>
             </Link>
-            <Link href="/assistant-chatgpt" passHref>
+            <Link href="/assistant-chatgpt">
               <Button variant="ghost" size="icon" className="mb-4">
                 <Settings className="h-6 w-6" />
               </Button>

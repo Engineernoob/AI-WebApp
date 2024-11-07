@@ -66,8 +66,8 @@ const Signup: React.FC = () => {
           </button>
         </form>
         <div className="mt-6 text-center">
-          <Link href="/login">
-            <a className="text-sm text-blue-600 hover:underline">Already have an account? Login</a>
+          <Link href="/login" className="text-blue-600 hover:underline">
+            Already have an account? Login
           </Link>
         </div>
       </div>
