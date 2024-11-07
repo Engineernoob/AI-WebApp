@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import '../styles/login.css'
 
 export default function Login() {
   const router = useRouter();
@@ -27,49 +26,47 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-8">
-      <div className="bg-white p-10 rounded-lg shadow-md max-w-md w-full">
+      <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
         {/* Bot Icon and Heading */}
-        <div className="space-y-4 text-center">
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mx-auto">
-            <Bot className="w-6 h-6 text-primary" />
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mx-auto mb-4">
+            <Bot className="w-8 h-8 text-blue-600" />
           </div>
           <h1 className="text-3xl font-bold">Login to Silas AI</h1>
-          <p className="text-lg text-muted-foreground">
-            Enter your credentials to access your account
-          </p>
+          <p className="text-gray-600 mt-2">Enter your credentials to access your account</p>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <Alert variant="destructive" className="mt-4">
+          <Alert variant="destructive" className="mb-4">
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
-          <div className="space-y-2">
-            <Label htmlFor="username" className="text-lg font-semibold">Username</Label>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-1">
+            <Label htmlFor="username" className="block text-lg font-medium text-gray-700">Username</Label>
             <Input
               id="username"
               placeholder="Enter your username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:outline-none"
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
           </div>
-          
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-lg font-semibold">Password</Label>
+
+          <div className="space-y-1">
+            <Label htmlFor="password" className="block text-lg font-medium text-gray-700">Password</Label>
             <Input
               id="password"
               placeholder="Enter your password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:outline-none"
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               required
             />
           </div>
@@ -80,7 +77,7 @@ export default function Login() {
         </form>
 
         {/* Register and Back to Home Links */}
-        <div className="mt-8 space-y-4 text-center">
+        <div className="mt-6 text-center">
           <p className="text-sm">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-blue-600 hover:underline font-medium">
@@ -89,16 +86,15 @@ export default function Login() {
           </p>
 
           <div className="flex justify-center mt-4">
-            <Button variant="ghost" asChild className="gap-2 text-purple-700">
-              <Link href="/">
+            <Link href="/">
+              <Button variant="ghost" className="gap-2 text-purple-700 hover:underline">
                 <ArrowLeft className="w-4 h-4" />
                 Back to Home
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
