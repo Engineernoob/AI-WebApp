@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { ArrowBigLeftDash } from 'lucide-react';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -53,6 +54,9 @@ const Login: React.FC = () => {
         <div className="mt-6 text-center">
           <Link href="/signup" className="text-blue-600 hover:underline">
             Don't have an account? Register
+          </Link>
+          <Link href="/">
+            <ArrowBigLeftDash className="mr-2 h-4 w-4" />
           </Link>
         </div>
       </div>
