@@ -3,102 +3,110 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Bot, User, Lock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function Login() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (username && password) {
-      router.push('/aichat');
-    } else {
-      setError('Invalid credentials. Please try again.');
+    setError('');
+    
+    // Login logic (replace with your actual API call)
+    try {
+      // Mock login success
+      if (username && password) {
+        // Simulate successful login
+        router.push('/aichat'); // Redirect to AI chat page after successful login
+      } else {
+        setError('Invalid credentials. Please try again.');
+      }
+    } catch (err) {
+      console.error(err);
+      setError('Login failed. Please try again.');
     }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-4">
-      <div className="bg-white p-10 rounded-2xl shadow-xl max-w-md w-full">
-        {/* Bot Icon and Heading */}
-        <div className="text-center mb-6">
-          <div className="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mx-auto mb-4">
-            <Bot className="w-8 h-8 text-blue-600" />
-          </div>
-          <h1 className="text-3xl font-bold text-gray-800">Login to Silas AI</h1>
-          <p className="text-gray-500 mt-2">Enter your credentials to access your account</p>
+    <div className="flex items-center justify-center min-h-screen bg-gray-900">
+      <div className="bg-gray-800 bg-opacity-75 p-10 rounded-lg shadow-lg max-w-md w-full">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-white">Login to Silas AI</h2>
+          <p className="text-gray-400 mt-2">Enter your credentials to access your account</p>
         </div>
 
-        {/* Error Alert */}
+        {/* Error Message */}
         {error && (
-          <Alert variant="destructive" className="mb-4">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md">
+            {error}
+          </div>
         )}
 
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="username" className="text-lg font-medium text-gray-700">Username</Label>
-            <div className="relative">
-              <Input
-                id="username"
-                placeholder="Enter your username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                required
-              />
-              <User className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
+          <div>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-400">Username</label>
+            <Input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-3 mt-1 bg-transparent border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-lg font-medium text-gray-700">Password</Label>
-            <div className="relative">
-              <Input
-                id="password"
-                placeholder="Enter your password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                required
-              />
-              <Lock className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-400">Password</label>
+            <Input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 mt-1 bg-transparent border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              required
+            />
           </div>
-
-          <Button type="submit" className="w-full py-3 text-lg font-bold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+          <div className="flex items-center justify-between text-sm">
+            <label className="flex items-center text-gray-400">
+              <input
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                className="text-indigo-500 bg-transparent border-gray-600 rounded focus:ring-0 focus:ring-offset-0 mr-2"
+              />
+              Remember Me
+            </label>
+            <Link href="/forgot-password" className="text-indigo-400 hover:underline">
+              Forgot Password?
+            </Link>
+          </div>
+          <Button
+            type="submit"
+            className="w-full py-3 mt-4 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition"
+          >
             Login
           </Button>
         </form>
 
-        {/* Register and Back to Home Links */}
-        <div className="mt-6 text-center">
+        {/* Footer Links */}
+        <div className="mt-6 text-center text-gray-400">
           <p className="text-sm">
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="text-blue-600 hover:underline font-medium">
-              Register
+            <Link href="/signup" className="text-indigo-400 hover:underline">
+              Sign Up
             </Link>
           </p>
-
-          <div className="flex justify-center mt-4">
-            <Link href="/">
-              <Button variant="ghost" className="gap-2 text-blue-600 hover:underline">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
-              </Button>
-            </Link>
-          </div>
+          <Link href="/" className="inline-flex items-center mt-4 text-sm text-gray-500 hover:underline">
+            <span className="mr-2">←</span> Back to Home
+          </Link>
         </div>
       </div>
     </div>
