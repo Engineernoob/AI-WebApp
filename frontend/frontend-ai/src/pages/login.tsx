@@ -3,9 +3,8 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowBigLeftDash, Bot } from 'lucide-react'
+import { ArrowLeft, Bot } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -18,9 +17,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Add login logic here
     if (username && password) {
-      // Assuming login is successful, redirect to AI chat page
       router.push('/aichat')
     } else {
       setError('Invalid credentials. Please try again.')
@@ -28,69 +25,72 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <div className="flex justify-center mb-4">
-            <div className="bg-primary/10 p-2 rounded-full">
-              <Bot className="w-8 h-8 text-primary" />
-            </div>
+    <div className="flex flex-col min-h-screen p-8 bg-background">
+      <div className="mx-auto w-full max-w-md space-y-6">
+        <div className="space-y-2">
+          <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10">
+            <Bot className="w-6 h-6 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-bold text-center">Login to Silas AI</CardTitle>
-          <CardDescription className="text-center">
+          <h1 className="text-3xl font-bold">Login to Silas AI</h1>
+          <p className="text-xl text-muted-foreground">
             Enter your credentials to access your account
-          </CardDescription>
-        </CardHeader>
-        <form onSubmit={handleSubmit}>
-          <CardContent className="space-y-4">
-            {error && (
-              <Alert variant="destructive">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
-            <div className="space-y-2">
-              <Label htmlFor="username">Username</Label>
-              <Input
-                id="username"
-                type="text"
-                placeholder="Enter your username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full">
-              Login
-            </Button>
-            <div className="text-center text-sm">
-              <Link href="/signup" className="text-primary hover:underline">
-                Don't have an account? Register
-              </Link>
-            </div>
-            <div className="flex justify-center">
-              <Button variant="ghost" size="icon" asChild>
-                <Link href="/">
-                  <ArrowBigLeftDash className="h-6 w-6" />
-                  <span className="sr-only">Back to Home</span>
-                </Link>
-              </Button>
-            </div>
-          </CardFooter>
+          </p>
+        </div>
+
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="username">Username</Label>
+            <Input
+              id="username"
+              placeholder="Enter your username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          
+          <div className="space-y-2">
+            <Label htmlFor="password">Password</Label>
+            <Input
+              id="password"
+              placeholder="Enter your password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <Button type="submit" className="w-full">
+            Login
+          </Button>
         </form>
-      </Card>
+
+        <div className="space-y-4">
+          <p className="text-center">
+            Don&apos;t have an account?{" "}
+            <Link href="/register" className="text-primary hover:underline font-medium">
+              Register
+            </Link>
+          </p>
+
+          <div className="flex justify-center">
+            <Button variant="ghost" asChild className="gap-2">
+              <Link href="/">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
