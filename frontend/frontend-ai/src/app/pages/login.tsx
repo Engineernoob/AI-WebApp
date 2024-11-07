@@ -1,30 +1,29 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const LoginRegister: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const Login: React.FC = () => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleToggle = () => {
-    setIsLogin(!isLogin);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const action = isLogin ? 'Logging in' : 'Registering';
-    console.log(`${action}:`, { username, password });
-    // Call your login or register API here
+    // Add login logic here
+    if (username && password) {
+      // Assuming login is successful, redirect to AI chat page
+      router.push('/aichat');
+    } else {
+      alert('Invalid credentials. Please try again.');
+    }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-6 text-center">
-          {isLogin ? 'Login' : 'Register'}
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input
@@ -48,18 +47,12 @@ const LoginRegister: React.FC = () => {
             type="submit"
             className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
           >
-            {isLogin ? 'Login' : 'Register'}
+            Login
           </button>
         </form>
-        <button
-          onClick={handleToggle}
-          className="w-full mt-4 text-center text-sm text-blue-600 hover:underline"
-        >
-          {isLogin ? "Don't have an account? Register" : 'Already have an account? Login'}
-        </button>
         <div className="mt-6 text-center">
-          <Link href="/" className='text-blue-600 hover:underline'>
-            Back to Home
+          <Link href="/signup" className="text-blue-600 hover:underline">
+            Don't have an account? Register
           </Link>
         </div>
       </div>
@@ -67,4 +60,5 @@ const LoginRegister: React.FC = () => {
   );
 };
 
-export default LoginRegister;
+export default Login;
+

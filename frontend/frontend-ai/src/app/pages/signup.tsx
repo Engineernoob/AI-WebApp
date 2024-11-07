@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const Signup: React.FC = () => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -13,8 +15,13 @@ const Signup: React.FC = () => {
       alert("Passwords do not match!");
       return;
     }
+    
+    // Assuming registration is successful, redirect to login page
     console.log('Registering:', { username, password });
-    // Call your register API here
+    
+    // You can call your register API here
+    // If the registration is successful, you can redirect the user to the login page
+    router.push('/login');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<string>>) => {
