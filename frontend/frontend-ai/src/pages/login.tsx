@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Bot } from 'lucide-react';
+import { ArrowLeft, Bot, User, Lock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,15 +25,15 @@ export default function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-8">
-      <div className="bg-white p-10 rounded-lg shadow-lg max-w-md w-full">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-4">
+      <div className="bg-white p-10 rounded-2xl shadow-xl max-w-md w-full">
         {/* Bot Icon and Heading */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <div className="flex items-center justify-center w-14 h-14 rounded-full bg-blue-100 mx-auto mb-4">
             <Bot className="w-8 h-8 text-blue-600" />
           </div>
-          <h1 className="text-3xl font-bold">Login to Silas AI</h1>
-          <p className="text-gray-600 mt-2">Enter your credentials to access your account</p>
+          <h1 className="text-3xl font-bold text-gray-800">Login to Silas AI</h1>
+          <p className="text-gray-500 mt-2">Enter your credentials to access your account</p>
         </div>
 
         {/* Error Alert */}
@@ -45,33 +45,39 @@ export default function Login() {
 
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-1">
-            <Label htmlFor="username" className="block text-lg font-medium text-gray-700">Username</Label>
-            <Input
-              id="username"
-              placeholder="Enter your username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
+          <div className="space-y-2">
+            <Label htmlFor="username" className="text-lg font-medium text-gray-700">Username</Label>
+            <div className="relative">
+              <Input
+                id="username"
+                placeholder="Enter your username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+              <User className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            </div>
           </div>
 
-          <div className="space-y-1">
-            <Label htmlFor="password" className="block text-lg font-medium text-gray-700">Password</Label>
-            <Input
-              id="password"
-              placeholder="Enter your password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
+          <div className="space-y-2">
+            <Label htmlFor="password" className="text-lg font-medium text-gray-700">Password</Label>
+            <div className="relative">
+              <Input
+                id="password"
+                placeholder="Enter your password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 pl-10 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                required
+              />
+              <Lock className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            </div>
           </div>
 
-          <Button type="submit" className="w-full py-3 text-lg font-bold bg-black text-white rounded-md hover:bg-gray-800 transition">
+          <Button type="submit" className="w-full py-3 text-lg font-bold bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
             Login
           </Button>
         </form>
@@ -87,7 +93,7 @@ export default function Login() {
 
           <div className="flex justify-center mt-4">
             <Link href="/">
-              <Button variant="ghost" className="gap-2 text-purple-700 hover:underline">
+              <Button variant="ghost" className="gap-2 text-blue-600 hover:underline">
                 <ArrowLeft className="w-4 h-4" />
                 Back to Home
               </Button>
