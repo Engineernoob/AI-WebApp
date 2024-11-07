@@ -3,19 +3,29 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { LogIn, Mail, Lock, Github, ArrowLeft } from 'lucide-react';
+import { UserPlus, User, Mail, Lock, Github, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function Login() {
+export default function Signup() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push('/aichat');
+    router.push('/login');
   };
 
   return (
@@ -23,16 +33,35 @@ export default function Login() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center space-y-2">
           <div className="mx-auto h-12 w-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <LogIn className="h-6 w-6 text-primary" />
+            <UserPlus className="h-6 w-6 text-primary" />
           </div>
-          <CardTitle className="text-3xl font-bold">Welcome to Silas AI</CardTitle>
+          <CardTitle className="text-3xl font-bold">Create your account</CardTitle>
           <CardDescription className="text-lg">
-            Please sign in to your account
+            Join Silas AI today
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Full Name
+              </label>
+              <div className="relative">
+                <User className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="flex h-11 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+            </div>
+
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                 Email address
@@ -41,9 +70,10 @@ export default function Login() {
                 <Mail className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                 <input
                   id="email"
+                  name="email"
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleChange}
                   className="flex h-11 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholder="name@example.com"
                   required
@@ -59,9 +89,10 @@ export default function Login() {
                 <Lock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                 <input
                   id="password"
+                  name="password"
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
                   className="flex h-11 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholder="••••••••"
                   required
@@ -69,26 +100,27 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
+            <div className="space-y-2">
+              <label htmlFor="confirmPassword" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Confirm Password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
                 <input
-                  id="remember"
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className="flex h-11 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="••••••••"
+                  required
                 />
-                <label htmlFor="remember" className="text-sm text-muted-foreground">
-                  Remember me
-                </label>
               </div>
-              <Link href="/forgot-password" className="text-sm text-primary hover:underline">
-                Forgot password?
-              </Link>
             </div>
 
             <Button type="submit" className="w-full">
-              Sign in
+              Create Account
             </Button>
 
             <div className="relative">
@@ -109,9 +141,9 @@ export default function Login() {
 
             <div className="text-center space-y-2">
               <p className="text-sm text-muted-foreground">
-                Don't have an account?{' '}
-                <Link href="/signup" className="text-primary hover:underline">
-                  Sign up now
+                Already have an account?{' '}
+                <Link href="/login" className="text-primary hover:underline">
+                  Sign in
                 </Link>
               </p>
               
