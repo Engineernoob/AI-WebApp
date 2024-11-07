@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import './styles/login.css'
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Bot } from 'lucide-react';
@@ -8,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import './styles/login.css'
+
 
 export default function Login() {
   const router = useRouter();
